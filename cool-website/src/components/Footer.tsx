@@ -48,19 +48,19 @@ const Footer = () => {
           <div className="space-y-3">
             <h3 className="font-semibold text-gray-900 text-sm">Quick Links</h3>
             <nav className="space-y-2">
-              <Link href="/home" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/home" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Home
               </Link>
-              <Link href="/services" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Services
               </Link>
-              <Link href="/packages" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/packages" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Packages
               </Link>
-              <Link href="/about" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/about" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 About Us
               </Link>
-              <Link href="/contact" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/contact" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Contact Us
               </Link>
             </nav>
@@ -70,19 +70,19 @@ const Footer = () => {
           <div className="space-y-3">
             <h3 className="font-semibold text-gray-900 text-sm">Our Services</h3>
             <nav className="space-y-2">
-              <Link href="/services" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Residential Cleaning
               </Link>
-              <Link href="/services" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Commercial Cleaning
               </Link>
-              <Link href="/services" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Deep Cleaning
               </Link>
-              <Link href="/services" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Furniture Cleaning
               </Link>
-              <Link href="/services" prefetch={true} className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Pest Control
               </Link>
             </nav>
@@ -93,10 +93,10 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-900 text-sm">Get In Touch</h3>
             <div className="space-y-2">
               <div
-                className="flex items-center space-x-2 text-xs text-gray-600 hover:text-black transition-colors cursor-pointer"
+                className="flex items-center space-x-3 text-xs text-gray-600 hover:text-black transition-colors cursor-pointer"
                 onClick={handleLocationClick}
               >
-                <MapPin className="w-3 h-3 text-black" />
+                <MapPin className="w-5 h-5 text-black" />
                 <span className="break-all">Office 201, M Floor, Gate No 1, Abdullah Bahar Building, Salahudin Road, Deira Dubai</span>
               </div>
               <div
@@ -105,7 +105,6 @@ const Footer = () => {
               >
                 <Phone className="w-3 h-3 text-black" />
                 <span>04 268 6552</span>
-                <Phone className="w-3 h-3 text-black" />
               </div>
               <div
                 className="flex items-center space-x-2 text-xs text-gray-600 hover:text-black transition-colors cursor-pointer"

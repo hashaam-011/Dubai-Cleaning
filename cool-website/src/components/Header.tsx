@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Phone, Search, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,30 +9,36 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [windowWidth, setWindowWidth] = useState(0);
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
 
+  // Optimized scroll handler with throttling
+  const handleScroll = useCallback(() => {
+    const scrolled = window.scrollY > 20;
+    if (scrolled !== isScrolled) {
+      setIsScrolled(scrolled);
+    }
+  }, [isScrolled]);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    // Throttled scroll listener
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    // Set initial window width
-    setWindowWidth(window.innerWidth);
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', throttledScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', throttledScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   const handleCallClick = () => {
     window.open('tel:8006442', '_self');
@@ -42,7 +48,8 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleSearch = (query: string) => {
+  // Optimized search handler
+  const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
 
     if (query.trim() === '') {
@@ -74,7 +81,7 @@ const Header = () => {
 
     setSearchResults(results);
     setShowSearchResults(true);
-  };
+  }, []);
 
   const handleSearchBlur = () => {
     setTimeout(() => setShowSearchResults(false), 200);
@@ -92,15 +99,15 @@ const Header = () => {
         }`}>
           {/* Logo */}
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <Link href="/home" prefetch={true} className="flex items-center space-x-2 sm:space-x-3">
+            <Link href="/home" prefetch className="flex items-center space-x-2 sm:space-x-3">
               <div className={`relative transition-all duration-200 ${
                 isScrolled ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-12 h-12 sm:w-16 sm:h-16'
               }`}>
                 <Image
                   src="/logo.png"
                   alt="Cool Technical Service Logo"
-                  width={isScrolled ? (windowWidth < 640 ? 32 : 40) : (windowWidth < 640 ? 48 : 64)}
-                  height={isScrolled ? (windowWidth < 640 ? 32 : 40) : (windowWidth < 640 ? 48 : 64)}
+                  width={isScrolled ? 40 : 64}
+                  height={isScrolled ? 40 : 64}
                   className="object-contain"
                   priority
                 />
@@ -145,22 +152,20 @@ const Header = () => {
 
           {/* Navigation Links - Desktop */}
           <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
-            <Link href="/home" prefetch={true} className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+            <Link href="/home" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
               Home
             </Link>
-            <Link href="/contact" prefetch={true} className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
-              Services
-            </Link>
-            <Link href="/packages" prefetch={true} className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+           
+            <Link href="/packages" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
               Packages
             </Link>
-            <Link href="/pricing" prefetch={true} className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+            <Link href="/pricing" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
               Pricing
             </Link>
-            <Link href="/about" prefetch={true} className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+            <Link href="/about" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
               About Us
             </Link>
-            <Link href="/contact" prefetch={true} className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+            <Link href="/contact" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
               Contact Us
             </Link>
           </nav>
@@ -223,22 +228,22 @@ const Header = () => {
 
             {/* Mobile Navigation */}
             <nav className="space-y-2">
-              <Link href="/home" prefetch={true} className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/home" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
                 Home
               </Link>
-              <Link href="/contact" prefetch={true} className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/contact" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
                 Services
               </Link>
-              <Link href="/packages" prefetch={true} className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/packages" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
                 Packages
               </Link>
-              <Link href="/pricing" prefetch={true} className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/pricing" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
                 Pricing
               </Link>
-              <Link href="/about" prefetch={true} className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/about" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
                 About Us
               </Link>
-              <Link href="/contact" prefetch={true} className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/contact" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
                 Contact Us
               </Link>
             </nav>
