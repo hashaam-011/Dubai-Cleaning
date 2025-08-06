@@ -4,7 +4,7 @@ export default function AboutPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
       {/* Hero Section */}
-      <div className="relative text-center mb-20">
+      <div className="relative text-center mb-16 sm:mb-20 lg:mb-24">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-white to-yellow-50 rounded-3xl transform -skew-y-1"></div>
         <div className="relative py-16 px-8">
           <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-full mb-6">
@@ -24,7 +24,7 @@ export default function AboutPage() {
       </div>
 
       {/* Team Images Section */}
-      <div className="mb-20">
+      <div className="mb-16 sm:mb-20 lg:mb-24">
         <div className="text-center mb-12">
           <div className="inline-flex items-center bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full mb-6">
             <Users className="w-6 h-6 mr-2" />
@@ -105,7 +105,7 @@ export default function AboutPage() {
       </div>
 
       {/* About Us Section */}
-      <div className="mb-20">
+      <div className="mb-16 sm:mb-20 lg:mb-24">
         <div className="bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-yellow-500/10 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
@@ -130,7 +130,7 @@ export default function AboutPage() {
       </div>
 
       {/* How it Started Section */}
-      <div className="mb-20">
+      <div className="mb-16 sm:mb-20 lg:mb-24">
         <div className="bg-gradient-to-br from-yellow-50 to-white rounded-3xl shadow-2xl p-8 md:p-12 border border-yellow-100 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-yellow-500/10 to-transparent rounded-full transform -translate-x-20 -translate-y-20"></div>
           <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-blue-500/10 to-transparent rounded-full transform translate-x-16 translate-y-16"></div>

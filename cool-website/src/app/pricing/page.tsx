@@ -5,7 +5,7 @@ export default function PricingPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
       {/* Hero Section */}
-      <div className="relative text-center mb-20">
+      <div className="relative text-center mb-16 sm:mb-20 lg:mb-24">
         <div className="absolute inset-0 bg-gradient-to-r from-yellow-50 to-blue-50 rounded-3xl transform -skew-y-1"></div>
         <div className="relative py-16 px-8">
           <div className="inline-flex items-center bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2 rounded-full mb-6">
@@ -25,7 +25,7 @@ export default function PricingPage() {
       </div>
 
       {/* Homes Section */}
-      <div className="mb-20">
+      <div className="mb-16 sm:mb-20 lg:mb-24">
         <div className="text-center mb-12">
           <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full mb-4">
             <Home className="w-6 h-6 mr-2" />
@@ -37,7 +37,7 @@ export default function PricingPage() {
         </div>
 
         {/* Once in a week - 4 times */}
-        <div className="mb-12">
+        <div className="mb-12 sm:mb-16 lg:mb-20">
           <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-6 mb-6">
             <div className="flex items-center justify-center mb-2">
               <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold mr-3">
@@ -183,7 +183,7 @@ export default function PricingPage() {
         </div>
 
         {/* Twice in a week - 8 times */}
-        <div className="mb-12">
+        <div className="mb-12 sm:mb-16 lg:mb-20">
           <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-6 mb-6">
             <div className="flex items-center justify-center mb-2">
               <div className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold mr-3 flex items-center">
@@ -330,7 +330,7 @@ export default function PricingPage() {
         </div>
 
         {/* Thrice in a week - 8 times */}
-        <div className="mb-12">
+        <div className="mb-12 sm:mb-16 lg:mb-20">
           <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-2xl p-6 mb-6">
             <div className="flex items-center justify-center mb-2">
               <div className="bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold mr-3 flex items-center">
@@ -478,7 +478,7 @@ export default function PricingPage() {
       </div>
 
       {/* Apartments and Villas Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 sm:mb-20 lg:mb-24">
         {/* Apartments */}
         <div className="group relative bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
           <div className="absolute top-4 right-4">

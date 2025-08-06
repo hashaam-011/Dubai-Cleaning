@@ -112,7 +112,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-white">
+      <section className="bg-white mb-12 sm:mb-16 lg:mb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             <div className="space-y-6 sm:space-y-8">
@@ -198,7 +198,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
       </section>
 
       {/* Our Services Section */}
-      <section className="py-8 sm:py-12 lg:py-16">
+      <section className="py-8 sm:py-12 lg:py-16 mb-12 sm:mb-16 lg:mb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
             Our Professional Services
@@ -232,7 +232,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
       </section>
 
       {/* Glimpse of our work Section */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
+      <section className="py-8 sm:py-12 lg:py-16 bg-gray-50 mb-12 sm:mb-16 lg:mb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
             Glimpse of our work
@@ -302,7 +302,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
 
       
       {/* Why Choose Us Section */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-white">
+      <section className="py-8 sm:py-12 lg:py-16 bg-white mb-12 sm:mb-16 lg:mb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
             Why Choose Cool Technical Service?

@@ -111,7 +111,7 @@ export default function ServicePage() {
     return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
       {/* Hero Section */}
-      <div className="relative mb-20">
+      <div className="relative mb-16 sm:mb-20 lg:mb-24">
         <div className="absolute inset-0 bg-gradient-to-r from-yellow-50 via-white to-blue-50 rounded-3xl transform -skew-y-1"></div>
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16 px-8">
           <div className="text-center lg:text-left">
@@ -143,7 +143,7 @@ export default function ServicePage() {
       </div>
 
       {/* What We're Offering Section */}
-      <div className="mb-20">
+      <div className="mb-16 sm:mb-20 lg:mb-24">
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full mb-6">
             <Award className="w-6 h-6 mr-2" />
@@ -215,8 +215,8 @@ export default function ServicePage() {
       </div>
 
       {/* Testimonials Section */}
-      <div className="mb-20">
-        <div className="text-center mb-16">
+      <div className="mb-16 sm:mb-20 lg:mb-24">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <div className="inline-flex items-center bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full mb-6">
             <Users className="w-6 h-6 mr-2" />
             <span className="font-semibold text-lg">Testimonials</span>

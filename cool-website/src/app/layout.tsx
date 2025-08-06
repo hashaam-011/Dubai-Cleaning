@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LoadingScreen from "../components/LoadingScreen";
 import ScrollButtons from "../components/ScrollButtons";
+import PhoneCallPopup from "../components/PhoneCallPopup";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <ScrollButtons />
+        <PhoneCallPopup />
       </body>
     </html>
   );
