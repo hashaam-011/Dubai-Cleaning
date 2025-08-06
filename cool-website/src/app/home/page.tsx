@@ -9,6 +9,12 @@ import Lottie from 'lottie-react';
 import expertAnimation from '../../../public/Expert in Field.json';
 import recycleAnimation from '../../../public/Recycle.json';
 import calendarAnimation from '../../../public/Calendar.json';
+import kitchenAnimation from '../../../public/Chef cooking.json';
+import residentialAnimation from '../../../public/Cleaner Site.json';
+import bathroomAnimation from '../../../public/Cleaning.json';
+import commercialAnimation from '../../../public/Maintenance.json';
+import furnitureAnimation from '../../../public/Furniture isolated.json';
+import acAnimation from '../../../public/Home repair.json';
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -42,127 +48,46 @@ export default function HomePage() {
               <div className="grid grid-cols-3 gap-4 sm:gap-6">
                 {/* Row 1 */}
                 <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-pink-200 rounded-full mx-auto mb-2 sm:mb-3 flex items-center justify-center">
-                    <Image
-                      src="/1afa28fe7873be2e7460cdfcf05c3f236323e1eb.jpg"
-                      alt="Home Deep Cleaning"
-                      width={48}
-                      height={48}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full"
-                      loading="lazy"
-                    />
+                  <div >
+                   <Lottie animationData={acAnimation} loop={true} />
                   </div>
                   <p className="text-xs sm:text-sm font-medium text-gray-900">Home Deep Cleaning</p>
                 </div>
                 <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-200 rounded-full mx-auto mb-2 sm:mb-3 flex items-center justify-center">
-                    <Image
-                      src="/64e88a7c9f02a60c44238e437519aad846eee5d9.jpg"
-                      alt="Kitchen Cleaning"
-                      width={48}
-                      height={48}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full"
-                      loading="lazy"
-                    />
+                  <div >
+                    <Lottie animationData={kitchenAnimation} loop={true} />
                   </div>
                   <p className="text-xs sm:text-sm font-medium text-gray-900">Kitchen Cleaning</p>
                 </div>
                 <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-200 rounded-full mx-auto mb-2 sm:mb-3 flex items-center justify-center">
-                    <Image
-                      src="/35f06415aa4bd57a00b29fca514da8e056691423.jpg"
-                      alt="AC & Appliance Repair"
-                      width={48}
-                      height={48}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full"
-                      loading="lazy"
-                    />
+                  <div >
+                    <Lottie animationData={residentialAnimation} loop={true} />
                   </div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">AC & Appliance Repair</p>
+                  <p className="text-xs sm:text-sm font-medium text-gray-900">Residential Cleaning</p>
                 </div>
 
                 {/* Row 2 */}
                 <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-red-200 rounded-full mx-auto mb-2 sm:mb-3 flex items-center justify-center">
-                    <Image
-                      src="/94f77000ab2f026d86dfb312a07fdb457837bb2a.jpg"
-                      alt="Bathroom Cleaning"
-                      width={48}
-                      height={48}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full"
-                      loading="lazy"
-                    />
+                  <div >
+                    <Lottie animationData={bathroomAnimation} loop={true} />
                   </div>
                   <p className="text-xs sm:text-sm font-medium text-gray-900">Bathroom Cleaning</p>
                 </div>
                 <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-orange-200 rounded-full mx-auto mb-2 sm:mb-3 flex items-center justify-center">
-                    <Image
-                      src="/08b69e6a8c84f07e986a5c790d4742edddc64b48.jpg"
-                      alt="Commercial Cleaning"
-                      width={48}
-                      height={48}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full"
-                      loading="lazy"
-                    />
-                  </div>
+                 <div>
+                  <Lottie animationData={commercialAnimation} loop={true} />
+                 </div> 
                   <p className="text-xs sm:text-sm font-medium text-gray-900">Commercial Cleaning</p>
                 </div>
                 <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer relative">
-                  <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded">Sale</div>
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-200 rounded-full mx-auto mb-2 sm:mb-3 flex items-center justify-center">
-                    <Image
-                      src="/3d27251398f4f7f19bdbeae61e868f777cdefe6f.jpg"
-                      alt="Furniture Cleaning"
-                      width={48}
-                      height={48}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full"
-                      loading="lazy"
-                    />
-                  </div>
+                 <div>
+                  <Lottie animationData={furnitureAnimation} loop={true} />
+                 </div>
                   <p className="text-xs sm:text-sm font-medium text-gray-900">Furniture Cleaning</p>
                 </div>
 
-                {/* Row 3 */}
-                <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-200 rounded-full mx-auto mb-2 sm:mb-3 flex items-center justify-center">
-                    <Image
-                      src="/5e0699fe1cd5ecddb07ffee953272085570a8fee.jpg"
-                      alt="Deep Cleaning"
-                      width={48}
-                      height={48}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full"
-                      loading="lazy"
-                    />
-                  </div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">Deep Cleaning</p>
-                </div>
-                <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-amber-200 rounded-full mx-auto mb-2 sm:mb-3 flex items-center justify-center">
-                    <Image
-                      src="/16ff545d7e36e5fd277daaf9626b023cb913aa55.jpg"
-                      alt="Wall Panels"
-                      width={48}
-                      height={48}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full"
-                      loading="lazy"
-                    />
-                  </div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">Wall Panels</p>
-                </div>
-                <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-200 rounded-full mx-auto mb-2 sm:mb-3 flex items-center justify-center">
-                    <Image
-                      src="/37fec225f7e8f27f9b70cae1b931b16dac5d8fc4.jpg"
-                      alt="Kitchen Deep Cleaning"
-                      width={48}
-                      height={48}
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-full"
-                      loading="lazy"
-                    />
-                  </div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">Kitchen Deep Cleaning</p>
-                </div>
+               
+               
               </div>
 
               {/* Statistics */}
@@ -183,7 +108,7 @@ export default function HomePage() {
                 <div className="space-y-2 sm:space-y-4">
                   <div className="relative">
                     <Image
-                      src="/879cbb094a6a27505099f36b47ef50414566d7e8.jpg"
+                      src="/home.jpg"
                       alt="Home Cleaning Service"
                       width={200}
                       height={160}
@@ -193,8 +118,8 @@ export default function HomePage() {
                   </div>
                   <div className="relative">
                     <Image
-                      src="/64e88a7c9f02a60c44238e437519aad846eee5d9.jpg"
-                      alt="Kitchen Cleaning Service"
+                      src="/home2.jpg"
+                      alt="Professional Cleaning Service"
                       width={200}
                       height={160}
                       className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded"
@@ -205,7 +130,7 @@ export default function HomePage() {
                 <div className="space-y-2 sm:gap-4">
                   <div className="relative">
                     <Image
-                      src="/94f77000ab2f026d86dfb312a07fdb457837bb2a.jpg"
+                      src="/home3.jpg"
                       alt="Deep Cleaning Service"
                       width={200}
                       height={160}
@@ -215,7 +140,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative">
                     <Image
-                      src="/35f06415aa4bd57a00b29fca514da8e056691423.jpg"
+                      src="/home5.jpg"
                       alt="AC Cleaning Service"
                       width={200}
                       height={160}
