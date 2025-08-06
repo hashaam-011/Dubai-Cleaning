@@ -4,8 +4,12 @@ import { useState, useEffect, useCallback } from 'react';
 import { Phone, Search, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { HOME_SEARCH_ENTRIES } from '../app/home/page';
 
-const Header = () => {
+const DynamicHomePage = dynamic(() => import('../app/home/page'), { ssr: false });
+
+const Header = ({ onSearch }: { onSearch?: (query: string) => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -51,6 +55,7 @@ const Header = () => {
   // Optimized search handler
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
+    if (onSearch) onSearch(query);
 
     if (query.trim() === '') {
       setSearchResults([]);
@@ -58,30 +63,13 @@ const Header = () => {
       return;
     }
 
-    // Search through page content
-    const pageContent = [
-      'Home Deep Cleaning',
-      'Kitchen Cleaning',
-      'AC & Appliance Repair',
-      'Bathroom Cleaning',
-      'Commercial Cleaning',
-      'Furniture Cleaning',
-      'Deep Cleaning',
-      'Wall Panels',
-      'Kitchen Deep Cleaning',
-      'Residential Cleaning',
-      'Professional Quality',
-      'Eco-Friendly',
-      'Flexible Scheduling'
-    ];
-
-    const results = pageContent.filter(item =>
+    const results = HOME_SEARCH_ENTRIES.filter(item =>
       item.toLowerCase().includes(query.toLowerCase())
     );
 
     setSearchResults(results);
     setShowSearchResults(true);
-  }, []);
+  }, [onSearch]);
 
   const handleSearchBlur = () => {
     setTimeout(() => setShowSearchResults(false), 200);
@@ -99,10 +87,10 @@ const Header = () => {
         }`}>
           {/* Logo */}
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <Link href="/home" prefetch className="flex items-center space-x-2 sm:space-x-3">
+            <Link href="/home" prefetch className="flex items-center space-x-2 sm:space-x-3 cursor-pointer">
               <div className={`relative transition-all duration-200 ${
                 isScrolled ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-12 h-12 sm:w-16 sm:h-16'
-              }`}>
+              }`} style={{cursor:'pointer'}}>
                 <Image
                   src="/logo.png"
                   alt="Cool Technical Service Logo"
@@ -114,7 +102,7 @@ const Header = () => {
               </div>
               <div className={`font-bold transition-all duration-200 ${
                 isScrolled ? 'text-base sm:text-lg' : 'text-lg sm:text-xl lg:text-2xl'
-              } text-gray-900 hidden sm:block`}>
+              } text-gray-900 hidden sm:block`} style={{cursor:'pointer'}}>
                 Cool Technical Service
               </div>
             </Link>
@@ -152,20 +140,20 @@ const Header = () => {
 
           {/* Navigation Links - Desktop */}
           <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
-            <Link href="/home" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+            <Link href="/home" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
               Home
             </Link>
            
-            <Link href="/packages" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+            <Link href="/packages" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
               Packages
             </Link>
-            <Link href="/pricing" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+            <Link href="/pricing" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
               Pricing
             </Link>
-            <Link href="/about" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+            <Link href="/about" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
               About Us
             </Link>
-            <Link href="/contact" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base">
+            <Link href="/contact" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
               Contact Us
             </Link>
           </nav>
@@ -187,7 +175,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={handleMobileMenuToggle}
-            className="md:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors duration-150"
+            className="md:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors duration-150 cursor-pointer"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -228,22 +216,22 @@ const Header = () => {
 
             {/* Mobile Navigation */}
             <nav className="space-y-2">
-              <Link href="/home" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/home" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
                 Home
               </Link>
-              <Link href="/contact" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/contact" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
                 Services
               </Link>
-              <Link href="/packages" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/packages" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
                 Packages
               </Link>
-              <Link href="/pricing" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/pricing" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
                 Pricing
               </Link>
-              <Link href="/about" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/about" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
                 About Us
               </Link>
-              <Link href="/contact" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150">
+              <Link href="/contact" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
                 Contact Us
               </Link>
             </nav>

@@ -3,7 +3,6 @@
 import { Star, Users, CheckCircle, Home, Building, Sparkles, Sofa, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import CarouselButton from '../../components/CarouselButton';
 import { useState } from 'react';
 import Lottie from 'lottie-react';
 import expertAnimation from '../../../public/Expert in Field.json';
@@ -16,7 +15,18 @@ import commercialAnimation from '../../../public/Maintenance.json';
 import furnitureAnimation from '../../../public/Furniture isolated.json';
 import acAnimation from '../../../public/Home repair.json';
 
-export default function HomePage() {
+export const HOME_SEARCH_ENTRIES = [
+  'Home Deep Cleaning',
+  'Kitchen Cleaning',
+  'Residential Cleaning',
+  'Bathroom Cleaning',
+  'Commercial Cleaning',
+  'Furniture Cleaning',
+  'Deep Cleaning',
+  'Specialized Cleaning',
+];
+
+export default function HomePage({ searchQuery = '' }: { searchQuery?: string }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const workImages = [
@@ -33,6 +43,72 @@ export default function HomePage() {
     setCurrentSlide((prev) => (prev - 1 + workImages.length) % workImages.length);
   };
 
+  // Filter logic for hero grid and services
+  const lowerQuery = searchQuery.toLowerCase();
+  const heroServices = [
+    { label: 'Home Deep Cleaning', icon: acAnimation },
+    { label: 'Kitchen Cleaning', icon: kitchenAnimation },
+    { label: 'Residential Cleaning', icon: residentialAnimation },
+    { label: 'Bathroom Cleaning', icon: bathroomAnimation },
+    { label: 'Commercial Cleaning', icon: commercialAnimation },
+    { label: 'Furniture Cleaning', icon: furnitureAnimation },
+  ].filter(s => s.label.toLowerCase().includes(lowerQuery));
+
+  const serviceCards = [
+    {
+      title: 'Residential Cleaning',
+      desc: 'Professional cleaning services for homes, apartments, and villas',
+      label: 'Residential Cleaning',
+      img: '/1afa28fe7873be2e7460cdfcf05c3f236323e1eb.jpg',
+      icon: <Home className="w-8 h-8 text-white" />,
+      features: [
+        'General dusting and vacuuming of all rooms',
+        'Bathroom and kitchen sanitation',
+        'Floor mopping and surface cleaning',
+        'Eco-friendly cleaning products available',
+      ],
+    },
+    {
+      title: 'Commercial Cleaning',
+      desc: 'Comprehensive cleaning solutions for offices, shops, and malls',
+      label: 'Commercial Cleaning',
+      img: '/08b69e6a8c84f07e986a5c790d4742edddc64b48.jpg',
+      icon: <Building className="w-8 h-8 text-white" />,
+      features: [
+        'Workspace sanitation and desk cleaning',
+        'Restroom deep cleaning and supply replenishment',
+        'Window and glass surface cleaning',
+        'Flexible after-hours service',
+      ],
+    },
+    {
+      title: 'Deep Cleaning',
+      desc: 'Complete deep cleaning and post-renovation cleaning services',
+      label: 'Deep Cleaning',
+      img: '/5e0699fe1cd5ecddb07ffee953272085570a8fee.jpg',
+      icon: <Sparkles className="w-8 h-8 text-white" />,
+      features: [
+        'Complete dust and debris removal',
+        'Deep scrubbing of kitchens and bathrooms',
+        'Stain, grease, and adhesive elimination',
+        'Move-in ready space preparation',
+      ],
+    },
+    {
+      title: 'Furniture Cleaning',
+      desc: 'Fresh and clean upholstery services for all furniture types',
+      label: 'Furniture Cleaning',
+      img: '/3d27251398f4f7f19bdbeae61e868f777cdefe6f.jpg',
+      icon: <Sofa className="w-8 h-8 text-white" />,
+      features: [
+        'Sofas & Chairs – Fabric or leather cleaning',
+        'Mattresses – Dust, odor, and stain removal',
+        'Office Chairs – Seat and back cleaning',
+        'Cushions & Pillows – Fluff and freshen up',
+      ],
+    },
+  ].filter(card => card.label.toLowerCase().includes(lowerQuery));
+
   return (
     <>
       {/* Hero Section */}
@@ -46,48 +122,14 @@ export default function HomePage() {
 
               {/* Service Categories Grid */}
               <div className="grid grid-cols-3 gap-4 sm:gap-6">
-                {/* Row 1 */}
-                <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div >
-                   <Lottie animationData={acAnimation} loop={true} />
-                  </div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">Home Deep Cleaning</p>
-                </div>
-                <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div >
-                    <Lottie animationData={kitchenAnimation} loop={true} />
-                  </div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">Kitchen Cleaning</p>
-                </div>
-                <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div >
-                    <Lottie animationData={residentialAnimation} loop={true} />
-                  </div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">Residential Cleaning</p>
-                </div>
-
-                {/* Row 2 */}
-                <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                  <div >
-                    <Lottie animationData={bathroomAnimation} loop={true} />
-                  </div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">Bathroom Cleaning</p>
-                </div>
-                <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer">
-                 <div>
-                  <Lottie animationData={commercialAnimation} loop={true} />
-                 </div> 
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">Commercial Cleaning</p>
-                </div>
-                <div className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer relative">
-                 <div>
-                  <Lottie animationData={furnitureAnimation} loop={true} />
-                 </div>
-                  <p className="text-xs sm:text-sm font-medium text-gray-900">Furniture Cleaning</p>
-                </div>
-
-               
-               
+                {heroServices.map((s) => (
+                  <Link href="/pricing" key={s.label} prefetch className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer flex flex-col items-center" style={{cursor:'pointer'}}>
+                    <div>
+                      <Lottie animationData={s.icon} loop={true} />
+                    </div>
+                    <p className="text-xs sm:text-sm font-medium text-gray-900">{s.label}</p>
+                  </Link>
+                ))}
               </div>
 
               {/* Statistics */}
@@ -163,161 +205,27 @@ export default function HomePage() {
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
 
-            {/* Residential Cleaning */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 sm:h-56 bg-gradient-to-br from-blue-100 to-blue-200 relative">
-                <Image
-                  src="/1afa28fe7873be2e7460cdfcf05c3f236323e1eb.jpg"
-                  alt="Residential Cleaning"
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/30"></div>
-                <div className="absolute top-4 left-4">
-                  <Home className="w-8 h-8 text-white" />
+            {serviceCards.map((card) => (
+              <Link href="/pricing" key={card.title} prefetch className="bg-white rounded-lg shadow-md overflow-hidden block" style={{cursor:'pointer'}}>
+                <div className="h-48 sm:h-56 bg-gradient-to-br from-blue-100 to-blue-200 relative">
+                  <Image src={card.img} alt={card.title} fill className="object-cover" loading="lazy" />
+                  <div className="absolute inset-0 bg-black/30"></div>
+                  <div className="absolute top-4 left-4">{card.icon}</div>
                 </div>
-              </div>
-              <div className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Residential Cleaning</h3>
-                <p className="text-gray-600 mb-4">Professional cleaning services for homes, apartments, and villas</p>
-                <ul className="space-y-2">
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">General dusting and vacuuming of all rooms</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Bathroom and kitchen sanitation</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Floor mopping and surface cleaning</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Eco-friendly cleaning products available</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Commercial Cleaning */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 sm:h-56 bg-gradient-to-br from-purple-100 to-purple-200 relative">
-                <Image
-                  src="/08b69e6a8c84f07e986a5c790d4742edddc64b48.jpg"
-                  alt="Commercial Cleaning"
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/30"></div>
-                <div className="absolute top-4 left-4">
-                  <Building className="w-8 h-8 text-white" />
+                <div className="p-6 sm:p-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">{card.title}</h3>
+                  <p className="text-gray-600 mb-4">{card.desc}</p>
+                  <ul className="space-y-2">
+                    {card.features.map(f => (
+                      <li key={f} className="flex items-start space-x-2">
+                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm sm:text-base text-gray-700">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
-              <div className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Commercial Cleaning</h3>
-                <p className="text-gray-600 mb-4">Comprehensive cleaning solutions for offices, shops, and malls</p>
-                <ul className="space-y-2">
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Workspace sanitation and desk cleaning</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Restroom deep cleaning and supply replenishment</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Window and glass surface cleaning</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Flexible after-hours service</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Deep Cleaning */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 sm:h-56 bg-gradient-to-br from-orange-100 to-orange-200 relative">
-                <Image
-                  src="/5e0699fe1cd5ecddb07ffee953272085570a8fee.jpg"
-                  alt="Deep Cleaning"
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/30"></div>
-                <div className="absolute top-4 left-4">
-                  <Sparkles className="w-8 h-8 text-white" />
-                </div>
-              </div>
-              <div className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Deep Cleaning</h3>
-                <p className="text-gray-600 mb-4">Complete deep cleaning and post-renovation cleaning services</p>
-                <ul className="space-y-2">
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Complete dust and debris removal</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Deep scrubbing of kitchens and bathrooms</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Stain, grease, and adhesive elimination</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Move-in ready space preparation</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Furniture Cleaning */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 sm:h-56 bg-gradient-to-br from-green-100 to-green-200 relative">
-                <Image
-                  src="/3d27251398f4f7f19bdbeae61e868f777cdefe6f.jpg"
-                  alt="Furniture Cleaning"
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/30"></div>
-                <div className="absolute top-4 left-4">
-                  <Sofa className="w-8 h-8 text-white" />
-                </div>
-              </div>
-              <div className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Furniture Cleaning</h3>
-                <p className="text-gray-600 mb-4">Fresh and clean upholstery services for all furniture types</p>
-                <ul className="space-y-2">
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Sofas & Chairs – Fabric or leather cleaning</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Mattresses – Dust, odor, and stain removal</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Office Chairs – Seat and back cleaning</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-700">Cushions & Pillows – Fluff and freshen up</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+              </Link>
+            ))}
 
           </div>
         </div>

@@ -51,8 +51,8 @@ const Footer = () => {
               <Link href="/home" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Home
               </Link>
-              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
-                Services
+              <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
+                Pricing
               </Link>
               <Link href="/packages" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Packages
@@ -70,19 +70,19 @@ const Footer = () => {
           <div className="space-y-3">
             <h3 className="font-semibold text-gray-900 text-sm">Our Services</h3>
             <nav className="space-y-2">
-              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Residential Cleaning
               </Link>
-              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Commercial Cleaning
               </Link>
-              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Deep Cleaning
               </Link>
-              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Furniture Cleaning
               </Link>
-              <Link href="/services" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Pest Control
               </Link>
             </nav>
