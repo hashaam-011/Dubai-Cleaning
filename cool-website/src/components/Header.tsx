@@ -96,7 +96,7 @@ const Header = ({ onSearch }: { onSearch?: (query: string) => void }) => {
                   alt="Cool Technical Service Logo"
                   width={isScrolled ? 40 : 64}
                   height={isScrolled ? 40 : 64}
-                  className="object-contain"
+                  className="object-contain h-auto"
                   priority
                 />
               </div>
@@ -143,7 +143,9 @@ const Header = ({ onSearch }: { onSearch?: (query: string) => void }) => {
             <Link href="/home" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
               Home
             </Link>
-           
+            <Link href="/service" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
+              Services
+            </Link>
             <Link href="/packages" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
               Packages
             </Link>
@@ -219,7 +221,7 @@ const Header = ({ onSearch }: { onSearch?: (query: string) => void }) => {
               <Link href="/home" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
                 Home
               </Link>
-              <Link href="/contact" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
+              <Link href="/service" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
                 Services
               </Link>
               <Link href="/packages" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">

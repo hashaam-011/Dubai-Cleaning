@@ -44,7 +44,7 @@ const LoadingScreen = () => {
             alt="Cool Technical Service Logo"
             width={128}
             height={128}
-            className="object-contain logo-spin"
+            className="object-contain logo-spin h-auto"
             priority
           />
         </div>

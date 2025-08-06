@@ -34,7 +34,7 @@ const Footer = () => {
                   alt="Cool Technical Service Logo"
                   width={32}
                   height={32}
-                  className="object-contain"
+                  className="object-contain h-auto"
                 />
               </div>
               <span className="font-bold text-gray-900 text-sm">Cool Technical Service</span>
@@ -50,6 +50,9 @@ const Footer = () => {
             <nav className="space-y-2">
               <Link href="/home" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Home
+              </Link>
+              <Link href="/service" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
+                Services
               </Link>
               <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Pricing
@@ -82,9 +85,7 @@ const Footer = () => {
               <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Furniture Cleaning
               </Link>
-              <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
-                Pest Control
-              </Link>
+             
             </nav>
           </div>
 
