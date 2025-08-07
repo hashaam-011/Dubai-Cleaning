@@ -70,13 +70,13 @@ export default function ContactPage() {
         <div className="relative text-center">
           <div className="inline-flex items-center bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full mb-6">
             <Sparkles className="w-6 h-6 mr-2" />
-            <span className="font-semibold text-lg">We're Here to Help</span>
+            <span className="font-semibold text-lg">We&apos;re Here to Help</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Get In <span className="text-green-500">Touch</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We're here to help you with all your cleaning needs. Reach out to us and we'll get back to you as soon as possible.
+            We&apos;re here to help you with all your cleaning needs. Reach out to us and we&apos;ll get back to you as soon as possible.
           </p>
         </div>
       </div>
@@ -265,7 +265,7 @@ export default function ContactPage() {
             <span className="font-semibold text-lg">Find Us</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            We're Just Around the <span className="text-red-500">Corner</span> ;)
+            We&apos;re Just Around the <span className="text-red-500">Corner</span> ;)
           </h2>
           <div className="bg-gradient-to-r from-gray-50 to-red-50 rounded-2xl p-6 max-w-4xl mx-auto">
             <p className="text-lg text-gray-700 font-medium">

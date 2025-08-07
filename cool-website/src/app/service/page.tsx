@@ -147,7 +147,7 @@ export default function ServicePage() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full mb-6">
             <Award className="w-6 h-6 mr-2" />
-            <span className="font-semibold text-lg">What We're Offering</span>
+            <span className="font-semibold text-lg">What We&apos;re Offering</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Our <span className="text-green-500">Services</span>
