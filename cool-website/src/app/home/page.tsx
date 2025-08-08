@@ -15,20 +15,9 @@ import commercialAnimation from '../../../public/Maintenance.json';
 import furnitureAnimation from '../../../public/Furniture isolated.json';
 import acAnimation from '../../../public/Home repair.json';
 
-export const HOME_SEARCH_ENTRIES = [
-  'Home Deep Cleaning',
-  'Kitchen Cleaning',
-  'Residential Cleaning',
-  'Bathroom Cleaning',
-  'Commercial Cleaning',
-  'Furniture Cleaning',
-  'Deep Cleaning',
-  'Specialized Cleaning',
-];
-
-export default function HomePage({ searchQuery = '' }: { searchQuery?: string }) {
+export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   const workImages = [
     { src: '/gl.png', alt: 'Before and After Cleaning Work 1' },
     { src: '/gl2.png', alt: 'Before and After Cleaning Work 2' },
@@ -43,8 +32,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
     setCurrentSlide((prev) => (prev - 1 + workImages.length) % workImages.length);
   };
 
-  // Filter logic for hero grid and services
-  const lowerQuery = searchQuery.toLowerCase();
+  // Hero services - no filtering
   const heroServices = [
     { label: 'Home Deep Cleaning', icon: acAnimation },
     { label: 'Kitchen Cleaning', icon: kitchenAnimation },
@@ -52,7 +40,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
     { label: 'Bathroom Cleaning', icon: bathroomAnimation },
     { label: 'Commercial Cleaning', icon: commercialAnimation },
     { label: 'Furniture Cleaning', icon: furnitureAnimation },
-  ].filter(s => s.label.toLowerCase().includes(lowerQuery));
+  ];
 
   const serviceCards = [
     {
@@ -107,7 +95,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
         'Cushions & Pillows – Fluff and freshen up',
       ],
     },
-  ].filter(card => card.label.toLowerCase().includes(lowerQuery));
+  ];
 
   return (
     <>
@@ -237,10 +225,10 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
             Glimpse of our work
           </h2>
-          
+
           <div className="relative">
             <div className="overflow-hidden rounded-lg">
-              <div 
+              <div
                 className="flex transition-transform duration-300 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
@@ -265,7 +253,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
                 ))}
               </div>
             </div>
-            
+
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
@@ -274,7 +262,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
-            
+
             <button
               onClick={nextSlide}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
@@ -282,7 +270,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
             >
               <ChevronRight className="w-6 h-6" />
             </button>
-            
+
             {/* Dots Indicator */}
             <div className="flex justify-center mt-4 space-x-2">
               {workImages.map((_, index) => (
@@ -300,7 +288,7 @@ export default function HomePage({ searchQuery = '' }: { searchQuery?: string })
         </div>
       </section>
 
-      
+
       {/* Why Choose Us Section */}
       <section className="py-8 sm:py-12 lg:py-16 bg-white mb-12 sm:mb-16 lg:mb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
