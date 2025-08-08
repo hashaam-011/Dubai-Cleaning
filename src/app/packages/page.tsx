@@ -1,6 +1,7 @@
 'use client';
 import { CheckCircle, ArrowRight, Brush, Star, Crown } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Lottie from 'lottie-react';
 import clean1Animation from '../../../public/clean1.json';
 import clean2Animation from '../../../public/clean2.json';
@@ -11,14 +12,16 @@ export default function PackagesPage() {
       {/* Hero Section */}
       <div className="relative py-20 sm:py-32 mb-20 rounded-2xl overflow-hidden">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/64e88a7c9f02a60c44238e437519aad846eee5d9.jpg"
             alt="Clean modern interior"
+            width={1920}
+            height={1080}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60"></div>
         </div>
-                
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
             <Brush className="w-5 h-5 text-yellow-400 mr-2" />
@@ -39,7 +42,7 @@ export default function PackagesPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50/30" style={{
           backgroundImage: `radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(251, 191, 36, 0.05) 0%, transparent 50%)`
         }}></div>
-                
+
         <div className="relative z-10">
           {/* Section Heading */}
           <div className="text-center mb-16 relative">
@@ -47,12 +50,12 @@ export default function PackagesPage() {
             <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-32 h-32 lg:w-48 lg:h-48 opacity-80">
               <Lottie animationData={clean1Animation} loop={true} />
             </div>
-                         
+
             {/* Right Animation */}
             <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-32 h-32 lg:w-48 lg:h-48 opacity-80">
               <Lottie animationData={clean2Animation} loop={true} />
             </div>
-                         
+
             <div className="flex items-center justify-center mb-6">
               <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-3 rounded-full mr-4">
                 <Brush className="w-8 h-8 text-white" />
@@ -63,10 +66,10 @@ export default function PackagesPage() {
             </div>
             <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto rounded-full"></div>
           </div>
-                     
+
           {/* Package Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                         
+
             {/* Hourly Package */}
             <div className="group relative bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
               <div className="absolute top-4 right-4">
@@ -81,7 +84,7 @@ export default function PackagesPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Hourly Package</h3>
                 <p className="text-gray-600 text-sm">Perfect for quick cleanups</p>
               </div>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
                   <div className="bg-green-100 rounded-full p-1 mr-3 mt-0.5">
@@ -108,7 +111,7 @@ export default function PackagesPage() {
                   <span className="text-gray-700">8 Hours – Deep cleaning, ironing, cooking help</span>
                 </div>
               </div>
-              
+
               <Link href="/contact" prefetch>
                 <button className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 flex items-center justify-center group-hover:shadow-lg transform hover:scale-105">
                   Book Now
@@ -132,7 +135,7 @@ export default function PackagesPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Weekly Package</h3>
                 <p className="text-gray-600 text-sm">Consistent weekly maintenance</p>
               </div>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
                   <div className="bg-green-100 rounded-full p-1 mr-3 mt-0.5">
@@ -159,7 +162,7 @@ export default function PackagesPage() {
                   <span className="text-gray-700">Priority booking</span>
                 </div>
               </div>
-              
+
               <Link href="/contact" prefetch>
                 <button className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 flex items-center justify-center group-hover:shadow-lg transform hover:scale-105">
                   Book Now
@@ -182,7 +185,7 @@ export default function PackagesPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Monthly Package</h3>
                 <p className="text-gray-600 text-sm">Dedicated monthly service</p>
               </div>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
                   <div className="bg-green-100 rounded-full p-1 mr-3 mt-0.5">
@@ -209,7 +212,7 @@ export default function PackagesPage() {
                   <span className="text-gray-700">Monthly deep cleaning included</span>
                 </div>
               </div>
-              
+
               <Link href="/contact" prefetch>
                 <button className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 flex items-center justify-center group-hover:shadow-lg transform hover:scale-105">
                   Book Now
@@ -233,7 +236,7 @@ export default function PackagesPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Annual Package</h3>
                 <p className="text-gray-600 text-sm">Ultimate year-round care</p>
               </div>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
                   <div className="bg-green-100 rounded-full p-1 mr-3 mt-0.5">
@@ -260,7 +263,7 @@ export default function PackagesPage() {
                   <span className="text-gray-700">Best value & priority service</span>
                 </div>
               </div>
-              
+
               <Link href="/contact" prefetch>
                 <button className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 flex items-center justify-center group-hover:shadow-lg transform hover:scale-105 shadow-md">
                   Book Now

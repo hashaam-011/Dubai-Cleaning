@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { Phone, Search, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,6 +45,11 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Close mobile menu when navigation link is clicked
+  const handleMobileNavClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
       isScrolled
@@ -58,7 +62,7 @@ const Header = () => {
         }`}>
           {/* Logo */}
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <Link href="/" prefetch className="flex items-center space-x-2 sm:space-x-3 cursor-pointer">
+            <Link href="/" prefetch className="flex items-center space-x-2 sm:space-x-3 cursor-pointer" onClick={handleMobileNavClick}>
               <div className={`relative transition-all duration-200 ${
                 isScrolled ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-12 h-12 sm:w-16 sm:h-16'
               }`} style={{cursor:'pointer'}}>
@@ -155,22 +159,22 @@ const Header = () => {
 
             {/* Mobile Navigation */}
             <nav className="space-y-2">
-              <Link href="/" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
+              <Link href="/" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer" onClick={handleMobileNavClick}>
                 Home
               </Link>
-              <Link href="/service" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
+              <Link href="/service" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer" onClick={handleMobileNavClick}>
                 Services
               </Link>
-              <Link href="/packages" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
+              <Link href="/packages" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer" onClick={handleMobileNavClick}>
                 Packages
               </Link>
-              <Link href="/pricing" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
+              <Link href="/pricing" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer" onClick={handleMobileNavClick}>
                 Pricing
               </Link>
-              <Link href="/about" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
+              <Link href="/about" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer" onClick={handleMobileNavClick}>
                 About Us
               </Link>
-              <Link href="/contact" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
+              <Link href="/contact" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer" onClick={handleMobileNavClick}>
                 Contact Us
               </Link>
             </nav>

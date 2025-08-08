@@ -1,51 +1,12 @@
 'use client';
 
-import { Star, Users, CheckCircle, Home, Building, Sparkles, Sofa, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, Users, CheckCircle, Home, Building, Sparkles, Sofa, ChevronLeft, ChevronRight, Wrench, Droplets, Calendar, Shield } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-
-// Lazy load Lottie animations to improve performance
-const Lottie = dynamic(() => import('lottie-react'), {
-  ssr: false,
-  loading: () => <div className="w-16 h-16 bg-gray-200 rounded-lg animate-pulse"></div>
-});
-
-// Import animations only when needed - using dynamic imports
-const loadAnimation = async (animationName: string) => {
-  try {
-    switch (animationName) {
-      case 'expertAnimation':
-        return (await import('../../public/Expert in Field.json')).default;
-      case 'recycleAnimation':
-        return (await import('../../public/Recycle.json')).default;
-      case 'calendarAnimation':
-        return (await import('../../public/Calendar.json')).default;
-      case 'kitchenAnimation':
-        return (await import('../../public/Chef cooking.json')).default;
-      case 'residentialAnimation':
-        return (await import('../../public/Cleaner Site.json')).default;
-      case 'bathroomAnimation':
-        return (await import('../../public/Cleaning.json')).default;
-      case 'commercialAnimation':
-        return (await import('../../public/Maintenance.json')).default;
-      case 'furnitureAnimation':
-        return (await import('../../public/Furniture isolated.json')).default;
-      case 'acAnimation':
-        return (await import('../../public/Home repair.json')).default;
-      default:
-        return null;
-    }
-  } catch (error) {
-    console.error(`Failed to load animation: ${animationName}`, error);
-    return null;
-  }
-};
+import { useState, useCallback } from 'react';
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [loadedAnimations, setLoadedAnimations] = useState<{[key: string]: any}>({});
 
   const workImages = [
     { src: '/gl.png', alt: 'Before and After Cleaning Work 1' },
@@ -53,35 +14,22 @@ export default function HomePage() {
     { src: '/2.png', alt: 'Before and After Cleaning Work 3' }
   ];
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % workImages.length);
-  };
+  }, [workImages.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + workImages.length) % workImages.length);
-  };
+  }, [workImages.length]);
 
-  // Load animation data when needed
-  const handleAnimationLoad = async (animationName: string) => {
-    if (!loadedAnimations[animationName]) {
-      const animationData = await loadAnimation(animationName);
-      if (animationData) {
-        setLoadedAnimations(prev => ({
-          ...prev,
-          [animationName]: animationData
-        }));
-      }
-    }
-  };
-
-  // Hero services - no filtering
+  // Hero services with static icons instead of heavy Lottie animations
   const heroServices = [
-    { label: 'Home Deep Cleaning', animationName: 'acAnimation' },
-    { label: 'Kitchen Cleaning', animationName: 'kitchenAnimation' },
-    { label: 'Residential Cleaning', animationName: 'residentialAnimation' },
-    { label: 'Bathroom Cleaning', animationName: 'bathroomAnimation' },
-    { label: 'Commercial Cleaning', animationName: 'commercialAnimation' },
-    { label: 'Furniture Cleaning', animationName: 'furnitureAnimation' },
+    { label: 'Home Deep Cleaning', icon: <Wrench className="w-8 h-8 text-blue-600" style={{display: 'block'}} /> },
+    { label: 'Kitchen Cleaning', icon: <Droplets className="w-8 h-8 text-green-600" style={{display: 'block'}} /> },
+    { label: 'Residential Cleaning', icon: <Home className="w-8 h-8 text-purple-600" style={{display: 'block'}} /> },
+    { label: 'Bathroom Cleaning', icon: <Droplets className="w-8 h-8 text-blue-600" style={{display: 'block'}} /> },
+    { label: 'Commercial Cleaning', icon: <Building className="w-8 h-8 text-orange-600" style={{display: 'block'}} /> },
+    { label: 'Furniture Cleaning', icon: <Sofa className="w-8 h-8 text-brown-600" style={{display: 'block'}} /> },
   ];
 
   const serviceCards = [
@@ -159,14 +107,9 @@ export default function HomePage() {
                     prefetch
                     className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer flex flex-col items-center"
                     style={{cursor:'pointer'}}
-                    onMouseEnter={() => handleAnimationLoad(s.animationName)}
                   >
-                    <div>
-                      {loadedAnimations[s.animationName] ? (
-                        <Lottie animationData={loadedAnimations[s.animationName]} loop={true} />
-                      ) : (
-                        <div className="w-16 h-16 bg-gray-200 rounded-lg animate-pulse"></div>
-                      )}
+                    <div className="w-12 h-12 flex items-center justify-center mb-2 bg-gray-50 rounded-lg">
+                      {s.icon}
                     </div>
                     <p className="text-xs sm:text-sm font-medium text-gray-900">{s.label}</p>
                   </Link>
@@ -197,6 +140,10 @@ export default function HomePage() {
                       height={160}
                       className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded"
                       priority
+                      quality={75}
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />
                   </div>
                   <div className="relative">
@@ -207,6 +154,10 @@ export default function HomePage() {
                       height={160}
                       className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded"
                       loading="lazy"
+                      quality={75}
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />
                   </div>
                 </div>
@@ -219,6 +170,10 @@ export default function HomePage() {
                       height={160}
                       className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded"
                       loading="lazy"
+                      quality={75}
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />
                   </div>
                   <div className="relative">
@@ -229,6 +184,10 @@ export default function HomePage() {
                       height={160}
                       className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded"
                       loading="lazy"
+                      quality={75}
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />
                   </div>
                 </div>
@@ -249,7 +208,17 @@ export default function HomePage() {
             {serviceCards.map((card) => (
               <Link href="/pricing" key={card.title} prefetch className="bg-white rounded-lg shadow-md overflow-hidden block" style={{cursor:'pointer'}}>
                 <div className="h-48 sm:h-56 bg-gradient-to-br from-blue-100 to-blue-200 relative">
-                  <Image src={card.img} alt={card.title} fill className="object-cover" loading="lazy" />
+                  <Image
+                    src={card.img}
+                    alt={card.title}
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                    quality={75}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  />
                   <div className="absolute inset-0 bg-black/30"></div>
                   <div className="absolute top-4 left-4">{card.icon}</div>
                 </div>
@@ -295,6 +264,10 @@ export default function HomePage() {
                         height={500}
                         className="w-full h-64 sm:h-80 lg:h-96 object-cover"
                         priority={index === 0}
+                        quality={75}
+                        sizes="(max-width: 768px) 100vw, 80vw"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                       />
                       <div className="absolute inset-0 bg-black/20"></div>
                       <div className="absolute bottom-4 left-4 text-white">
@@ -341,7 +314,6 @@ export default function HomePage() {
         </div>
       </section>
 
-
       {/* Why Choose Us Section */}
       <section className="py-8 sm:py-12 lg:py-16 bg-white mb-12 sm:mb-16 lg:mb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -350,34 +322,22 @@ export default function HomePage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
-                {loadedAnimations.expertAnimation ? (
-                  <Lottie animationData={loadedAnimations.expertAnimation} loop={true} style={{ width: '96px', height: '96px' }} />
-                ) : (
-                  <div className="w-24 h-24 bg-gray-200 rounded-lg animate-pulse" onMouseEnter={() => handleAnimationLoad('expertAnimation')}></div>
-                )}
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                <Shield className="w-16 h-16 text-blue-600" style={{display: 'block'}} />
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Professional Quality</h3>
               <p className="text-sm sm:text-base text-gray-600">Trained professionals with years of experience in cleaning and maintenance services.</p>
             </div>
             <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
-                {loadedAnimations.recycleAnimation ? (
-                  <Lottie animationData={loadedAnimations.recycleAnimation} loop={true} style={{ width: '96px', height: '96px' }} />
-                ) : (
-                  <div className="w-24 h-24 bg-gray-200 rounded-lg animate-pulse" onMouseEnter={() => handleAnimationLoad('recycleAnimation')}></div>
-                )}
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                <Droplets className="w-16 h-16 text-green-600" style={{display: 'block'}} />
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Eco-Friendly</h3>
               <p className="text-sm sm:text-base text-gray-600">We use environmentally safe cleaning products that are gentle on your family and pets.</p>
             </div>
             <div className="text-center p-6 bg-gray-50 rounded-lg sm:col-span-2 lg:col-span-1">
-              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
-                {loadedAnimations.calendarAnimation ? (
-                  <Lottie animationData={loadedAnimations.calendarAnimation} loop={true} style={{ width: '96px', height: '96px' }} />
-                ) : (
-                  <div className="w-24 h-24 bg-gray-200 rounded-lg animate-pulse" onMouseEnter={() => handleAnimationLoad('calendarAnimation')}></div>
-                )}
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center bg-white rounded-lg shadow-sm">
+                <Calendar className="w-16 h-16 text-purple-600" style={{display: 'block'}} />
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Flexible Scheduling</h3>
               <p className="text-sm sm:text-base text-gray-600">Convenient scheduling options to fit your busy lifestyle and work commitments.</p>

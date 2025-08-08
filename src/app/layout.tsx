@@ -4,19 +4,20 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LoadingScreen from "../components/LoadingScreen";
-import ScrollButtons from "../components/ScrollButtons";
-import PhoneCallPopup from "../components/PhoneCallPopup";
+import LazyComponents from "../components/LazyComponents";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   preload: true,
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   preload: true,
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -29,6 +30,8 @@ export const metadata: Metadata = {
     ],
     apple: '/logo.png',
   },
+  viewport: 'width=device-width, initial-scale=1',
+  robots: 'index, follow',
 };
 
 export default function RootLayout({
@@ -49,8 +52,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
-        <ScrollButtons />
-        <PhoneCallPopup />
+        <LazyComponents />
       </body>
     </html>
   );

@@ -157,7 +157,7 @@ export default function ServicePage() {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <div
               key={service.id}
               className={`group relative bg-gradient-to-br ${service.bgColor} rounded-3xl p-8 border-2 ${service.borderColor} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}
@@ -241,7 +241,7 @@ export default function ServicePage() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
               className="group bg-white rounded-3xl p-6 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden"

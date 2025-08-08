@@ -1,6 +1,7 @@
 'use client';
-import { ArrowRight, Mail, Phone, MapPin, Clock, Send, MessageCircle, Sparkles } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, Mail, Phone, MapPin, Clock, Send, MessageCircle, Sparkles, CheckCircle, AlertCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 
 import Lottie from 'lottie-react';
 import contactAnimation from '../../../public/contact.json';
@@ -14,10 +15,79 @@ export default function ContactPage() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init('3kj8B_GfKuA4GwxSg');
+    console.log('EmailJS initialized with key: 3kj8B_GfKuA4GwxSg');
+
+    // Test EmailJS connection
+    console.log('🧪 Testing EmailJS connection...');
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+
+    // COMPLETELY NEW APPROACH - Force fresh deployment
+    console.log('🚀 FRESH CONTACT FORM SUBMISSION STARTED 🚀');
+    console.log('📧 EmailJS Integration Version 2.0');
+    console.log('📋 Form data received:', formData);
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      // EmailJS configuration - UPDATED
+      const serviceId = 'service_opmi6mk'; // Changed back to Hostinger service
+      const templateId = 'template_99enpnt';
+      const publicKey = '3kj8B_GfKuA4GwxSg';
+
+      const templateParams = {
+        name: formData.fullName,
+        time: new Date().toLocaleString(),
+        message: `Email: ${formData.email}\nPhone: ${formData.countryCode} ${formData.phoneNumber}\n\nMessage:\n${formData.message}`,
+        to_email: 'info@cooltechnicalservices.com' // Hostinger email
+      };
+
+      console.log('🔧 EmailJS Configuration:', { serviceId, templateId, publicKey });
+      console.log('📤 Email Parameters:', templateParams);
+
+      // Try a different approach
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      console.log('📨 EmailJS Response:', result);
+      console.log('📨 EmailJS Response Status:', result.status);
+      console.log('📨 EmailJS Response Text:', result.text);
+      console.log('📨 EmailJS Response Type:', typeof result);
+      console.log('📨 EmailJS Response Keys:', Object.keys(result));
+
+      if (result.status === 200) {
+        console.log('✅ SUCCESS: Email sent successfully!');
+        setSubmitStatus('success');
+        // Reset form
+        setFormData({
+          fullName: '',
+          email: '',
+          countryCode: '+971',
+          phoneNumber: '',
+          message: ''
+        });
+      } else {
+        console.log('❌ FAILED: EmailJS returned non-200 status:', result.status);
+        setSubmitStatus('error');
+        setErrorMessage('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('💥 ERROR: EmailJS Error:', error);
+      setSubmitStatus('error');
+      setErrorMessage(`Failed to send message: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -94,6 +164,21 @@ export default function ContactPage() {
               <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">Send us a message</h2>
             </div>
 
+            {/* Success/Error Messages */}
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center">
+                <CheckCircle className="w-5 h-5 text-green-600 mr-3" />
+                <span className="text-green-800 font-medium">Message sent successfully! We&apos;ll get back to you soon.</span>
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center">
+                <AlertCircle className="w-5 h-5 text-red-600 mr-3" />
+                <span className="text-red-800 font-medium">{errorMessage}</span>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-3">
@@ -107,6 +192,7 @@ export default function ContactPage() {
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400 bg-white/70 backdrop-blur-sm"
                   placeholder="Enter your full name"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -122,6 +208,7 @@ export default function ContactPage() {
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400 bg-white/70 backdrop-blur-sm"
                   placeholder="Enter your email address"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -134,6 +221,7 @@ export default function ContactPage() {
                     value={formData.countryCode}
                     onChange={(e) => handleInputChange('countryCode', e.target.value)}
                     className="px-4 py-4 border-2 border-gray-200 rounded-l-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white/70 backdrop-blur-sm text-gray-900 font-medium"
+                    disabled={isSubmitting}
                   >
                     <option value="+971">+971</option>
                     <option value="+1">+1</option>
@@ -148,6 +236,7 @@ export default function ContactPage() {
                     className="flex-1 px-4 py-4 border-2 border-l-0 border-gray-200 rounded-r-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400 bg-white/70 backdrop-blur-sm"
                     placeholder="Enter your phone number"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
               </div>
@@ -164,15 +253,30 @@ export default function ContactPage() {
                   className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-gray-900 placeholder-gray-400 bg-white/70 backdrop-blur-sm resize-none"
                   placeholder="Tell us about your cleaning needs..."
                   required
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-6 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105"
+                disabled={isSubmitting}
+                className={`w-full py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 ${
+                  isSubmitting
+                    ? 'bg-gray-400 text-white cursor-not-allowed'
+                    : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700'
+                }`}
               >
-                Send Message
-                <ArrowRight className="w-5 h-5 ml-2" />
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </>
+                )}
               </button>
             </form>
           </div>

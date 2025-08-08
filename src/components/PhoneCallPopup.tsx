@@ -1,17 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-// Dynamically import Lottie to avoid SSR issues
-const Lottie = dynamic(() => import('lottie-react'), {
-  ssr: false,
-  loading: () => <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shadow-inner border border-white/30"></div>
-});
-
-// Import the phone call animation
-import phoneCallAnimation from '../../public/phone call.json';
+import { X, Phone } from 'lucide-react';
 
 const PhoneCallPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -70,15 +60,10 @@ const PhoneCallPopup = () => {
 
         {/* Content */}
         <div className="text-center text-white">
-          {/* Lottie Animation */}
+          {/* Static Phone Icon */}
           <div className="mb-3 flex justify-center">
             <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shadow-inner border border-white/30">
-              <Lottie
-                animationData={phoneCallAnimation}
-                loop={true}
-                style={{ width: '60px', height: '60px' }}
-                className="opacity-95 drop-shadow-lg"
-              />
+              <Phone className="w-10 h-10 text-white" />
             </div>
           </div>
 

@@ -4,9 +4,12 @@ const nextConfig: NextConfig = {
   // Optimized for Vercel deployment
   trailingSlash: true,
   images: {
-    unoptimized: true,
+    unoptimized: false, // Enable image optimization
     domains: [],
     formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60,
   },
   experimental: {
     optimizePackageImports: ['lucide-react'],
@@ -27,10 +30,21 @@ const nextConfig: NextConfig = {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
+            priority: 10,
+          },
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'all',
+            priority: 5,
           },
         },
       };
     }
+
+    // Optimize for smaller bundles
+    config.optimization.minimize = true;
+
     return config;
   },
 };

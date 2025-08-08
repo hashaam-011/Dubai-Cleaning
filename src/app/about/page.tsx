@@ -1,4 +1,5 @@
 import { Users, Award, Clock, CheckCircle, ArrowRight, Sparkles, Heart, Shield, Star } from 'lucide-react';
+import Image from 'next/image';
 
 export default function AboutPage() {
   return (
@@ -37,14 +38,16 @@ export default function AboutPage() {
             Our dedicated professionals are ready to serve you with excellence and care.
           </p>
         </div>
-                
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Image 1 */}
           <div className="group bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
             <div className="relative overflow-hidden">
-              <img
+              <Image
                 src="/23.png"
                 alt="Professional cleaning team member"
+                width={400}
+                height={320}
                 className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -63,9 +66,11 @@ export default function AboutPage() {
           {/* Image 2 */}
           <div className="group bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
             <div className="relative overflow-hidden">
-              <img
+              <Image
                 src="/22.png"
                 alt="Cleaning professional with equipment"
+                width={400}
+                height={320}
                 className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -84,9 +89,11 @@ export default function AboutPage() {
           {/* Image 3 */}
           <div className="group bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
             <div className="relative overflow-hidden">
-              <img
+              <Image
                 src="/24.png"
                 alt="Team member with thumbs up"
+                width={400}
+                height={320}
                 className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -109,7 +116,7 @@ export default function AboutPage() {
         <div className="bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-yellow-500/10 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
-          
+
           <div className="relative z-10">
             <div className="flex items-center mb-6">
               <div className="bg-gradient-to-r from-blue-500 to-blue-600 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
@@ -119,7 +126,7 @@ export default function AboutPage() {
                 Cool Technical Services <span className="text-blue-500">Cleaning</span>
               </h2>
             </div>
-            
+
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
               <p className="text-gray-700 leading-relaxed text-lg">
                 At Cool Technical Services, we&apos;re committed to making everyday spaces cleaner, healthier, and more livable. With a wide range of cleaning services designed for modern lifestyles, we serve homes, apartments, offices, retail spaces, and even post-construction sites across the UAE. Our highly trained team brings professionalism, efficiency, and a personal touch to every visit, using eco-friendly products and proven techniques to deliver consistently outstanding results. Whether you&apos;re booking us for a quick clean or ongoing support, we offer flexible service packages tailored to your needs — from hourly cleaning sessions to full-time, monthly arrangements. Choose from residential cleaning for villas and apartments, commercial services for offices and malls, or deep cleaning for an intensive refresh. Our packages are designed to fit your schedule: hourly slots (2, 4, or 8 hours), weekly care (2–6 days), or full-time monthly support with a dedicated maid. At Cool Technical Services, cleaning isn&apos;t just our job — it&apos;s our promise to enhance your comfort and peace of mind. We pride ourselves on being a trusted partner in your daily life, ensuring your spaces are not only clean but cared for with intention and respect.
@@ -134,7 +141,7 @@ export default function AboutPage() {
         <div className="bg-gradient-to-br from-yellow-50 to-white rounded-3xl shadow-2xl p-8 md:p-12 border border-yellow-100 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-yellow-500/10 to-transparent rounded-full transform -translate-x-20 -translate-y-20"></div>
           <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-blue-500/10 to-transparent rounded-full transform translate-x-16 translate-y-16"></div>
-          
+
           <div className="relative z-10">
             <div className="flex items-center mb-6">
               <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
@@ -144,7 +151,7 @@ export default function AboutPage() {
                 How it <span className="text-yellow-500">Started</span>
               </h2>
             </div>
-            
+
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
               <p className="text-gray-700 leading-relaxed text-lg">
                 Cool Technical Services began with one clear mission — to bring reliable, professional cleaning services to every corner of the UAE. It all started when our founder noticed the struggle many residents faced in finding trustworthy cleaners who truly delivered on their promises. What began as a small operation with one maid and a few basic tools has grown into a leading cleaning company known for its flexible packages, trained staff, and commitment to quality. In the early days, we focused on hourly cleaning for residential clients, offering just a few services at a time. But as demand grew, so did our offerings — expanding into commercial spaces, post-renovation cleanups, and full-time maid support. We designed customizable packages like our popular 2-hour express cleans, 8-hour deep cleaning with cooking and ironing, and monthly plans with all-day coverage. Our reputation spread through word-of-mouth, backed by results that spoke for themselves. Today, we serve a wide range of clients across apartments, villas, offices, shops, and malls — all with the same level of care and reliability that started it all. From day one, our goal was never just to clean — but to make life easier, one space at a time.
