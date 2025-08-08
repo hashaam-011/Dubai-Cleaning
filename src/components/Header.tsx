@@ -58,7 +58,7 @@ const Header = () => {
         }`}>
           {/* Logo */}
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <Link href="/home" prefetch className="flex items-center space-x-2 sm:space-x-3 cursor-pointer">
+            <Link href="/" prefetch className="flex items-center space-x-2 sm:space-x-3 cursor-pointer">
               <div className={`relative transition-all duration-200 ${
                 isScrolled ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-12 h-12 sm:w-16 sm:h-16'
               }`} style={{cursor:'pointer'}}>
@@ -94,7 +94,7 @@ const Header = () => {
 
           {/* Navigation Links - Desktop */}
           <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
-            <Link href="/home" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
+            <Link href="/" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
               Home
             </Link>
             <Link href="/service" prefetch className="text-gray-700 hover:text-black font-medium transition-colors duration-150 text-sm lg:text-base cursor-pointer">
@@ -155,7 +155,7 @@ const Header = () => {
 
             {/* Mobile Navigation */}
             <nav className="space-y-2">
-              <Link href="/home" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
+              <Link href="/" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">
                 Home
               </Link>
               <Link href="/service" prefetch className="block py-2 text-gray-700 hover:text-black font-medium transition-colors duration-150 cursor-pointer">

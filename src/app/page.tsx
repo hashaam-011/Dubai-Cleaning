@@ -12,16 +12,36 @@ const Lottie = dynamic(() => import('lottie-react'), {
   loading: () => <div className="w-16 h-16 bg-gray-200 rounded-lg animate-pulse"></div>
 });
 
-// Import animations only when needed
-const expertAnimation = () => import('../../public/Expert in Field.json');
-const recycleAnimation = () => import('../../public/Recycle.json');
-const calendarAnimation = () => import('../../public/Calendar.json');
-const kitchenAnimation = () => import('../../public/Chef cooking.json');
-const residentialAnimation = () => import('../../public/Cleaner Site.json');
-const bathroomAnimation = () => import('../../public/Cleaning.json');
-const commercialAnimation = () => import('../../public/Maintenance.json');
-const furnitureAnimation = () => import('../../public/Furniture isolated.json');
-const acAnimation = () => import('../../public/Home repair.json');
+// Import animations only when needed - using dynamic imports
+const loadAnimation = async (animationName: string) => {
+  try {
+    switch (animationName) {
+      case 'expertAnimation':
+        return (await import('../../public/Expert in Field.json')).default;
+      case 'recycleAnimation':
+        return (await import('../../public/Recycle.json')).default;
+      case 'calendarAnimation':
+        return (await import('../../public/Calendar.json')).default;
+      case 'kitchenAnimation':
+        return (await import('../../public/Chef cooking.json')).default;
+      case 'residentialAnimation':
+        return (await import('../../public/Cleaner Site.json')).default;
+      case 'bathroomAnimation':
+        return (await import('../../public/Cleaning.json')).default;
+      case 'commercialAnimation':
+        return (await import('../../public/Maintenance.json')).default;
+      case 'furnitureAnimation':
+        return (await import('../../public/Furniture isolated.json')).default;
+      case 'acAnimation':
+        return (await import('../../public/Home repair.json')).default;
+      default:
+        return null;
+    }
+  } catch (error) {
+    console.error(`Failed to load animation: ${animationName}`, error);
+    return null;
+  }
+};
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -42,28 +62,26 @@ export default function HomePage() {
   };
 
   // Load animation data when needed
-  const loadAnimation = async (animationName: string, importFn: () => Promise<any>) => {
+  const handleAnimationLoad = async (animationName: string) => {
     if (!loadedAnimations[animationName]) {
-      try {
-        const animationData = await importFn();
+      const animationData = await loadAnimation(animationName);
+      if (animationData) {
         setLoadedAnimations(prev => ({
           ...prev,
-          [animationName]: animationData.default
+          [animationName]: animationData
         }));
-      } catch (error) {
-        console.error(`Failed to load animation: ${animationName}`, error);
       }
     }
   };
 
   // Hero services - no filtering
   const heroServices = [
-    { label: 'Home Deep Cleaning', animationName: 'acAnimation', importFn: acAnimation },
-    { label: 'Kitchen Cleaning', animationName: 'kitchenAnimation', importFn: kitchenAnimation },
-    { label: 'Residential Cleaning', animationName: 'residentialAnimation', importFn: residentialAnimation },
-    { label: 'Bathroom Cleaning', animationName: 'bathroomAnimation', importFn: bathroomAnimation },
-    { label: 'Commercial Cleaning', animationName: 'commercialAnimation', importFn: commercialAnimation },
-    { label: 'Furniture Cleaning', animationName: 'furnitureAnimation', importFn: furnitureAnimation },
+    { label: 'Home Deep Cleaning', animationName: 'acAnimation' },
+    { label: 'Kitchen Cleaning', animationName: 'kitchenAnimation' },
+    { label: 'Residential Cleaning', animationName: 'residentialAnimation' },
+    { label: 'Bathroom Cleaning', animationName: 'bathroomAnimation' },
+    { label: 'Commercial Cleaning', animationName: 'commercialAnimation' },
+    { label: 'Furniture Cleaning', animationName: 'furnitureAnimation' },
   ];
 
   const serviceCards = [
@@ -141,7 +159,7 @@ export default function HomePage() {
                     prefetch
                     className="bg-gray-100 rounded-lg p-4 text-center hover:bg-gray-200 transition-colors cursor-pointer flex flex-col items-center"
                     style={{cursor:'pointer'}}
-                    onMouseEnter={() => loadAnimation(s.animationName, s.importFn)}
+                    onMouseEnter={() => handleAnimationLoad(s.animationName)}
                   >
                     <div>
                       {loadedAnimations[s.animationName] ? (
@@ -336,7 +354,7 @@ export default function HomePage() {
                 {loadedAnimations.expertAnimation ? (
                   <Lottie animationData={loadedAnimations.expertAnimation} loop={true} style={{ width: '96px', height: '96px' }} />
                 ) : (
-                  <div className="w-24 h-24 bg-gray-200 rounded-lg animate-pulse" onMouseEnter={() => loadAnimation('expertAnimation', expertAnimation)}></div>
+                  <div className="w-24 h-24 bg-gray-200 rounded-lg animate-pulse" onMouseEnter={() => handleAnimationLoad('expertAnimation')}></div>
                 )}
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Professional Quality</h3>
@@ -347,7 +365,7 @@ export default function HomePage() {
                 {loadedAnimations.recycleAnimation ? (
                   <Lottie animationData={loadedAnimations.recycleAnimation} loop={true} style={{ width: '96px', height: '96px' }} />
                 ) : (
-                  <div className="w-24 h-24 bg-gray-200 rounded-lg animate-pulse" onMouseEnter={() => loadAnimation('recycleAnimation', recycleAnimation)}></div>
+                  <div className="w-24 h-24 bg-gray-200 rounded-lg animate-pulse" onMouseEnter={() => handleAnimationLoad('recycleAnimation')}></div>
                 )}
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Eco-Friendly</h3>
@@ -358,7 +376,7 @@ export default function HomePage() {
                 {loadedAnimations.calendarAnimation ? (
                   <Lottie animationData={loadedAnimations.calendarAnimation} loop={true} style={{ width: '96px', height: '96px' }} />
                 ) : (
-                  <div className="w-24 h-24 bg-gray-200 rounded-lg animate-pulse" onMouseEnter={() => loadAnimation('calendarAnimation', calendarAnimation)}></div>
+                  <div className="w-24 h-24 bg-gray-200 rounded-lg animate-pulse" onMouseEnter={() => handleAnimationLoad('calendarAnimation')}></div>
                 )}
               </div>
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Flexible Scheduling</h3>
