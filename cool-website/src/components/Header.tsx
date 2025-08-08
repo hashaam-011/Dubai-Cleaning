@@ -5,16 +5,10 @@ import { Phone, Search, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { HOME_SEARCH_ENTRIES } from '../app/home/page';
 
-const DynamicHomePage = dynamic(() => import('../app/home/page'), { ssr: false });
-
-const Header = ({ onSearch }: { onSearch?: (query: string) => void }) => {
+const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<string[]>([]);
-  const [showSearchResults, setShowSearchResults] = useState(false);
 
   // Optimized scroll handler with throttling
   const handleScroll = useCallback(() => {
@@ -50,29 +44,6 @@ const Header = ({ onSearch }: { onSearch?: (query: string) => void }) => {
 
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  // Optimized search handler
-  const handleSearch = useCallback((query: string) => {
-    setSearchQuery(query);
-    if (onSearch) onSearch(query);
-
-    if (query.trim() === '') {
-      setSearchResults([]);
-      setShowSearchResults(false);
-      return;
-    }
-
-    const results = HOME_SEARCH_ENTRIES.filter(item =>
-      item.toLowerCase().includes(query.toLowerCase())
-    );
-
-    setSearchResults(results);
-    setShowSearchResults(true);
-  }, [onSearch]);
-
-  const handleSearchBlur = () => {
-    setTimeout(() => setShowSearchResults(false), 200);
   };
 
   return (
@@ -114,27 +85,10 @@ const Header = ({ onSearch }: { onSearch?: (query: string) => void }) => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <input
                 type="text"
-                value={searchQuery}
-                onChange={(e) => handleSearch(e.target.value)}
-                onFocus={() => setShowSearchResults(true)}
-                onBlur={handleSearchBlur}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm bg-gray-50 hover:bg-white transition-colors"
                 placeholder="Search for services..."
+                disabled
               />
-
-              {/* Search Results Dropdown */}
-              {showSearchResults && searchResults.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
-                  {searchResults.map((result, index) => (
-                    <div
-                      key={index}
-                      className="px-4 py-2 hover:bg-green-50 cursor-pointer text-sm text-gray-700 border-b border-gray-100 last:border-b-0"
-                    >
-                      {result}
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
 
@@ -192,27 +146,10 @@ const Header = ({ onSearch }: { onSearch?: (query: string) => void }) => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <input
                   type="text"
-                  value={searchQuery}
-                  onChange={(e) => handleSearch(e.target.value)}
-                  onFocus={() => setShowSearchResults(true)}
-                  onBlur={handleSearchBlur}
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm bg-gray-50"
                   placeholder="Search for services..."
+                  disabled
                 />
-
-                {/* Mobile Search Results */}
-                {showSearchResults && searchResults.length > 0 && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
-                    {searchResults.map((result, index) => (
-                      <div
-                        key={index}
-                        className="px-4 py-2 hover:bg-green-50 cursor-pointer text-sm text-gray-700 border-b border-gray-100 last:border-b-0"
-                      >
-                        {result}
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
             </div>
 

@@ -16,7 +16,7 @@ const services = [
     icon: <Home className="w-8 h-8 text-blue-600" />,
     features: [
       "General dusting and vacuuming",
-      "Bathroom and kitchen sanitation", 
+      "Bathroom and kitchen sanitation",
       "Floor mopping and surface cleaning",
       "Eco-friendly cleaning products"
     ],
@@ -26,13 +26,13 @@ const services = [
   },
   {
     id: 2,
-    title: "Commercial Cleaning", 
+    title: "Commercial Cleaning",
     description: "Comprehensive cleaning solutions for offices, shops, malls and commercial spaces with flexible scheduling.",
     icon: <Building className="w-8 h-8 text-green-600" />,
     features: [
       "Workspace sanitation and desk cleaning",
       "Restroom deep cleaning",
-      "Window and glass surface cleaning", 
+      "Window and glass surface cleaning",
       "Flexible after-hours service"
     ],
     bgColor: "from-green-50 to-green-100",
@@ -50,7 +50,7 @@ const services = [
       "Stain, grease, and adhesive elimination",
       "Move-in ready space preparation"
     ],
-    bgColor: "from-purple-50 to-purple-100", 
+    bgColor: "from-purple-50 to-purple-100",
     borderColor: "border-purple-200",
     textColor: "text-purple-600"
   },
@@ -66,7 +66,7 @@ const services = [
       "Final inspection and touch-ups"
     ],
     bgColor: "from-orange-50 to-orange-100",
-    borderColor: "border-orange-200", 
+    borderColor: "border-orange-200",
     textColor: "text-orange-600"
   }
 ];
@@ -82,7 +82,7 @@ const testimonials = [
     avatar: "/41.png"
   },
   {
-    id: 2, 
+    id: 2,
     name: "Michael Chen",
     role: "Business Owner",
     rating: 5,
@@ -91,7 +91,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Emma Rodriguez", 
+    name: "Emma Rodriguez",
     role: "Villa Owner",
     rating: 5,
     comment: "The post-construction cleaning was professional and reliable. They removed all dust and debris, leaving our newly renovated space immaculate.",
@@ -100,7 +100,7 @@ const testimonials = [
   {
     id: 4,
     name: "David Wilson",
-    role: "Office Manager", 
+    role: "Office Manager",
     rating: 5,
     comment: "Regular commercial cleaning service has been a game changer for our business. Consistent quality and excellent customer service.",
     avatar: "/42.png"
@@ -131,7 +131,7 @@ export default function ServicePage() {
           </div>
           <div className="relative flex justify-center">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-              <Lottie 
+              <Lottie
                 animationData={servicesAnimation}
                 loop={true}
                 style={{ width: '420px', height: '340px' }}
@@ -158,7 +158,7 @@ export default function ServicePage() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <div 
+            <div
               key={service.id}
               className={`group relative bg-gradient-to-br ${service.bgColor} rounded-3xl p-8 border-2 ${service.borderColor} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}
             >
@@ -230,7 +230,7 @@ export default function ServicePage() {
         {/* Testimonials Animation */}
         <div className="flex justify-center mb-12">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-            <Lottie 
+            <Lottie
               animationData={testimonialsAnimation}
               loop={true}
               style={{ width: '300px', height: '200px' }}
@@ -242,13 +242,13 @@ export default function ServicePage() {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div 
+            <div
               key={testimonial.id}
               className="group bg-white rounded-3xl p-6 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden"
             >
               {/* Background Pattern */}
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full transform translate-x-10 -translate-y-10"></div>
-              
+
               {/* Stars */}
               <div className="flex items-center justify-center mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -258,7 +258,7 @@ export default function ServicePage() {
 
               {/* Comment */}
               <p className="text-gray-600 text-sm leading-relaxed mb-6 text-center italic">
-                "{testimonial.comment}"
+                &ldquo;{testimonial.comment}&rdquo;
               </p>
 
               {/* Avatar and Info */}
@@ -297,11 +297,11 @@ export default function ServicePage() {
             <Shield className="w-5 h-5 text-blue-400 mr-2" />
             <span className="text-blue-400 font-medium">Why Choose Us?</span>
           </div>
-          
+
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Experience the Cool Technical Service Difference
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div className="flex flex-col items-center">
               <div className="bg-blue-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-4">
@@ -310,7 +310,7 @@ export default function ServicePage() {
               <h4 className="text-white font-bold text-lg mb-2">Flexible Scheduling</h4>
               <p className="text-gray-300 text-sm">Available 7 days a week with flexible timing to suit your needs</p>
             </div>
-            
+
             <div className="flex flex-col items-center">
               <div className="bg-green-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-4">
                 <Shield className="w-8 h-8 text-green-400" />
@@ -318,7 +318,7 @@ export default function ServicePage() {
               <h4 className="text-white font-bold text-lg mb-2">Eco-Friendly Products</h4>
               <p className="text-gray-300 text-sm">Safe, non-toxic cleaning products that protect your family and environment</p>
             </div>
-            
+
             <div className="flex flex-col items-center">
               <div className="bg-yellow-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-4">
                 <Headphones className="w-8 h-8 text-yellow-400" />
@@ -327,11 +327,11 @@ export default function ServicePage() {
               <p className="text-gray-300 text-sm">Round-the-clock customer support for all your cleaning needs</p>
             </div>
           </div>
-          
+
           <p className="text-gray-300 mb-8 max-w-3xl mx-auto text-lg">
             Whether you need a quick clean or full-time help, we offer affordable packages that fit your schedule and budget—without compromising on quality.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact" prefetch>
               <button className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-2xl">
