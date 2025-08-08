@@ -1,7 +1,7 @@
 'use client';
 import { ArrowRight, Mail, Phone, MapPin, Clock, Send, MessageCircle, Sparkles } from 'lucide-react';
 import { useState } from 'react';
-import Image from 'next/image';
+
 import Lottie from 'lottie-react';
 import contactAnimation from '../../../public/contact.json';
 
@@ -48,10 +48,10 @@ export default function ContactPage() {
           <div className="relative flex flex-col items-center gap-6">
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-green-500/20 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
-              
+
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-              <Lottie 
+              <Lottie
                 animationData={contactAnimation}
                 loop={true}
                 style={{ width: '420px', height: '340px' }}
@@ -66,7 +66,7 @@ export default function ContactPage() {
       <div className="bg-gradient-to-r from-white to-blue-50 rounded-3xl shadow-2xl p-8 md:p-12 mb-12 sm:mb-16 lg:mb-20 border border-blue-100 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-green-500/10 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
-        
+
         <div className="relative text-center">
           <div className="inline-flex items-center bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full mb-6">
             <Sparkles className="w-6 h-6 mr-2" />
@@ -85,7 +85,7 @@ export default function ContactPage() {
         {/* Contact Form */}
         <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl p-8 md:p-10 border border-gray-100 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-blue-500/5 to-transparent rounded-full transform -translate-x-20 -translate-y-20"></div>
-          
+
           <div className="relative">
             <div className="flex items-center mb-8">
               <div className="bg-gradient-to-r from-blue-500 to-blue-600 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
@@ -93,7 +93,7 @@ export default function ContactPage() {
               </div>
               <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">Send us a message</h2>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-3">
@@ -183,7 +183,7 @@ export default function ContactPage() {
           {/* Quick Contact */}
           <div className="bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-2xl p-8 border border-blue-100 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
-            
+
             <div className="relative">
               <div className="flex items-center mb-8">
                 <div className="bg-gradient-to-r from-green-500 to-green-600 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
@@ -191,7 +191,7 @@ export default function ContactPage() {
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900">Quick Contact</h2>
               </div>
-              
+
               <div className="space-y-6">
                 <div className="group flex items-center space-x-4 p-4 bg-white/70 backdrop-blur-sm rounded-2xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                   <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -229,7 +229,7 @@ export default function ContactPage() {
           {/* Business Hours */}
           <div className="bg-gradient-to-br from-white to-yellow-50 rounded-3xl shadow-2xl p-8 border border-yellow-100 relative overflow-hidden">
             <div className="absolute bottom-0 left-0 w-28 h-28 bg-gradient-to-tr from-yellow-500/10 to-transparent rounded-full transform -translate-x-14 translate-y-14"></div>
-            
+
             <div className="relative">
               <div className="flex items-center mb-8">
                 <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 w-12 h-12 rounded-xl flex items-center justify-center mr-4">
@@ -237,7 +237,7 @@ export default function ContactPage() {
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900">Business Hours</h2>
               </div>
-              
+
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 space-y-4">
                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
                   <span className="text-gray-700 font-medium">Monday - Friday</span>
@@ -273,7 +273,7 @@ export default function ContactPage() {
             </p>
           </div>
         </div>
-        
+
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 relative">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-red-500/5 pointer-events-none"></div>
           <iframe
