@@ -18,7 +18,7 @@ const Footer = () => {
   };
 
   const handleEmailClick = () => {
-    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=cleaningservices@abc.com', '_blank');
+    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=info@cooltechnicalservices.com', '_blank');
   };
 
   return (
@@ -48,7 +48,7 @@ const Footer = () => {
           <div className="space-y-3">
             <h3 className="font-semibold text-gray-900 text-sm">Quick Links</h3>
             <nav className="space-y-2">
-              <Link href="/home" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
+              <Link href="/" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Home
               </Link>
               <Link href="/service" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
@@ -85,7 +85,7 @@ const Footer = () => {
               <Link href="/pricing" prefetch className="block text-xs text-gray-600 hover:text-black transition-colors">
                 Furniture Cleaning
               </Link>
-             
+
             </nav>
           </div>
 
@@ -135,7 +135,7 @@ const Footer = () => {
                 onClick={handleEmailClick}
               >
                 <Mail className="w-3 h-3 text-black" />
-                <span>cleaningservices@abc.com</span>
+                <span>info@cooltechnicalservices.com</span>
               </div>
             </div>
 
@@ -146,10 +146,10 @@ const Footer = () => {
                 <a href="#" className="text-gray-600 hover:text-black transition-colors">
                   <Facebook className="w-4 h-4 text-black" />
                 </a>
-                <a href="#" className="text-gray-600 hover:text-black transition-colors">
+                <a href="https://www.instagram.com/cooltechnical1" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-black transition-colors">
                   <Instagram className="w-4 h-4 text-black" />
                 </a>
-                <a href="#" className="text-gray-600 hover:text-black transition-colors">
+                <a href="https://www.linkedin.com/in/cool-technical-services-680a43379/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-black transition-colors">
                   <Linkedin className="w-4 h-4 text-black" />
                 </a>
               </div>

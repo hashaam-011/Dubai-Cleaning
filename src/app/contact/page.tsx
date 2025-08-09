@@ -50,7 +50,10 @@ export default function ContactPage() {
         name: formData.fullName,
         time: new Date().toLocaleString(),
         message: `Email: ${formData.email}\nPhone: ${formData.countryCode} ${formData.phoneNumber}\n\nMessage:\n${formData.message}`,
-        to_email: 'info@cooltechnicalservices.com' // Hostinger email
+        to_email: 'info@cooltechnicalservices.com', // Hostinger email
+        reply_to: 'info@cooltechnicalservices.com', // Ensure reply goes to correct email
+        from_email: formData.email, // Sender's email
+        from_name: formData.fullName // Sender's name
       };
 
       console.log('🔧 EmailJS Configuration:', { serviceId, templateId, publicKey });
